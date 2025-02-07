@@ -7,6 +7,8 @@ function addCategory() {
   if (name && wage) {
     categories.push({ name, wage });
     updateCategoryDropdown();
+    document.getElementById("newCategoryName").value = "";
+    document.getElementById("newCategoryWage").value = "";
   }
 }
 
@@ -25,6 +27,7 @@ function addWorker() {
   const category = document.getElementById("workerCategorySelect").value;
   if (name && category) {
     workers.push({ name, category });
+    document.getElementById("newWorkerName").value = "";
     renderTable();
   }
 }
@@ -36,7 +39,12 @@ function renderTable() {
       <td>${i + 1}</td>
       <td>${w.name}</td>
       <td>${w.category}</td>
-      <td></td><td></td><td></td><td></td><td></td><td></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Monday')"></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Tuesday')"></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Wednesday')"></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Thursday')"></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Friday')"></td>
+      <td class="attendance-cell" onclick="markAttendance(${i}, 'Saturday')"></td>
       <td>0</td>
     </tr>`).join('');
 }
