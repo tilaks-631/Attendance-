@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Header -->
   <header>
     <h1>Workers Attendance Web App</h1>
     <div class="btn-group">
@@ -20,13 +19,15 @@
       <button onclick="prevWeek()">Previous Week</button>
       <button onclick="nextWeek()">Next Week</button>
     </div>
-    <div>
-      <input type="text" id="searchBox" placeholder="Search Worker..." oninput="searchWorker()">
-    </div>
+    <input type="text" id="searchBox" placeholder="Search Worker..." oninput="searchWorker()">
   </header>
 
-  <!-- Main Container -->
   <div class="container">
+    <div id="currentDate"></div>
+    <div id="weekNavigation">
+      <span id="weekDisplay">Week: Current</span>
+    </div>
+
     <!-- Add Category Section -->
     <div class="section" id="addCategorySection">
       <h3>Add Category</h3>
@@ -34,7 +35,6 @@
       <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
       <button onclick="addCategory()">Add Category</button>
       <button onclick="showCategories()">Show Categories</button>
-      <ul id="categoryList"></ul>
     </div>
 
     <!-- Add Worker Section -->
@@ -43,11 +43,6 @@
       <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
       <select id="workerCategorySelect"></select>
       <button onclick="addWorker()">Add Worker</button>
-    </div>
-
-    <div id="currentDate"></div>
-    <div id="weekNavigation">
-      <span id="weekDisplay">Week: Current</span>
     </div>
 
     <!-- Attendance Table -->
@@ -69,6 +64,12 @@
       <tbody id="attendanceBody"></tbody>
     </table>
     <div id="grandTotal">Grand Total: 0</div>
+  </div>
+
+  <div id="attendancePopup" class="popup">
+    <button onclick="setAttendance('P')">Present</button>
+    <button onclick="setAttendance('A')">Absent</button>
+    <button onclick="setAttendance('H')">Half</button>
   </div>
 
   <script src="script.js"></script>
