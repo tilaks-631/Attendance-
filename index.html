@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workers Attendance Web App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <h1>Workers Attendance Web App</h1>
+    <div class="btn-group">
+      <button class="reset" onclick="resetAttendance()">Reset Attendance</button>
+      <button class="undo" onclick="undoDelete()">Undo Delete</button>
+      <button class="pdf" onclick="downloadPDF()">Download PDF</button>
+      <button class="newWeek" onclick="newWeek()">New Week Attendance</button>
+    </div>
+    <div class="btn-group">
+      <button onclick="prevWeek()">Previous Week</button>
+      <button onclick="nextWeek()">Next Week</button>
+    </div>
+    <div>
+      <input type="text" id="searchBox" placeholder="Search Worker..." oninput="searchWorker()">
+    </div>
+    <div id="categoryFilters" class="btn-group">
+      <!-- Category filter buttons will be rendered here -->
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <div id="currentDate"></div>
+    <div id="weekNavigation">
+      <span id="weekDisplay">Week: Current</span>
+    </div>
+
+    <!-- Attendance Table -->
+    <table id="attendanceTable">
+      <thead>
+        <tr>
+          <th>S.No</th>
+          <th>Worker Name</th>
+          <th>Category</th>
+          <th>Monday</th>
+          <th>Tuesday</th>
+          <th>Wednesday</th>
+          <th>Thursday</th>
+          <th>Friday</th>
+          <th>Saturday</th>
+          <th>Total Payment</th>
+        </tr>
+      </thead>
+      <tbody id="attendanceBody">
+        <!-- Dynamic Rows will be inserted here -->
+      </tbody>
+    </table>
+    <div id="grandTotal">Grand Total: 0</div>
+
+    <!-- Add Worker Section -->
+    <div class="section" id="addWorkerSection">
+      <h3>Add Worker</h3>
+      <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
+      <select id="workerCategorySelect">
+        <!-- Options populated dynamically -->
+      </select>
+      <button onclick="addWorker()">Add Worker</button>
+    </div>
+
+    <!-- Add Category Section -->
+    <div class="section" id="addCategorySection">
+      <h3>Add Category</h3>
+      <input type="text" id="newCategoryName" placeholder="Enter Category Name">
+      <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
+      <button onclick="addCategory()">Add Category</button>
+    </div>
+  </div>
+
+  <!-- Attendance Popup for marking status -->
+  <div id="attendancePopup" class="popup">
+    <button onclick="setAttendance('P')"><span class="attendance-P">P</span> - Present</button>
+    <button onclick="setAttendance('A')"><span class="attendance-A">A</span> - Absent</button>
+    <button onclick="setAttendance('H')"><span class="attendance-H">H</span> - Half</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

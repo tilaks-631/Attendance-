@@ -1,0 +1,162 @@
+/* Reset & Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f8f9fa, #e0eafc);
+  color: #333;
+  min-height: 100vh;
+  padding-bottom: 40px;
+}
+header {
+  background: #4e54c8;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+  position: relative;
+}
+header h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+header .btn-group {
+  margin: 5px 0;
+}
+button {
+  margin: 5px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+}
+button:hover {
+  transform: translateY(-2px);
+}
+button.reset { background-color: #ff4d4d; color: #fff; }
+button.undo { background-color: #ffa500; color: #fff; }
+button.pdf { background-color: #28a745; color: #fff; }
+button.category { background-color: #007bff; color: #fff; }
+button.newWeek { background-color: #6f42c1; color: #fff; }
+header input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+/* Container & Sections */
+.container {
+  width: 95%;
+  max-width: 1200px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+.section {
+  margin-bottom: 20px;
+}
+h3 {
+  margin-bottom: 10px;
+  color: #4e54c8;
+}
+
+/* Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+}
+th, td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
+}
+tbody tr:hover {
+  background: #f9f9f9;
+}
+
+/* Attendance Cell Styles */
+.attendance-cell {
+  cursor: pointer;
+  position: relative;
+  min-width: 70px;
+  height: 40px;
+  vertical-align: middle;
+}
+.attendance-cell span {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.attendance-P { background-color: #28a745; color: #fff; }
+.attendance-A { background-color: #ff4d4d; color: #fff; }
+.attendance-H { background-color: #ffea00; color: #333; }
+
+/* Attendance Popup */
+.popup {
+  display: none;
+  position: absolute;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+.popup button {
+  width: 100%;
+  border: none;
+  background: none;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: normal;
+}
+.popup button:hover {
+  background: #f2f2f2;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Week Navigation & Date Display */
+#weekNavigation {
+  margin: 15px 0;
+  text-align: center;
+}
+#currentDate {
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+/* Grand Total */
+#grandTotal {
+  text-align: right;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Category Filter Buttons */
+#categoryFilters {
+  text-align: center;
+  margin-bottom: 10px;
+}
+#categoryFilters button {
+  margin: 0 5px;
+}
