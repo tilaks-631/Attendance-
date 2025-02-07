@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
   <!-- Header Section -->
   <header>
     <h1>Workers Attendance Web App</h1>
@@ -36,6 +35,28 @@
       <span id="weekDisplay">Week: Current</span>
     </div>
 
+    <!-- Add Category & Add Worker Section -->
+    <div class="section-container">
+      <!-- Add Category Section -->
+      <div class="section" id="addCategorySection">
+        <h3>Add Category</h3>
+        <input type="text" id="newCategoryName" placeholder="Enter Category Name">
+        <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
+        <button onclick="addCategory()">Add Category</button>
+      </div>
+
+      <!-- Add Worker Section -->
+      <div class="section" id="addWorkerSection">
+        <h3>Add Worker</h3>
+        <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
+        <select id="workerCategorySelect">
+          <!-- Options populated dynamically -->
+        </select>
+        <button onclick="addWorker()">Add Worker</button>
+        <button class="showCategories" onclick="showCategories()">Show Categories</button>
+      </div>
+    </div>
+
     <!-- Attendance Table -->
     <table id="attendanceTable">
       <thead>
@@ -57,39 +78,13 @@
       </tbody>
     </table>
     <div id="grandTotal">Grand Total: 0</div>
-
-    <!-- Add Worker Section -->
-    <div class="section" id="addWorkerSection">
-      <h3>Add Worker</h3>
-      <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
-      <select id="workerCategorySelect">
-        <!-- Options populated dynamically -->
-      </select>
-      <button onclick="addWorker()">Add Worker</button>
-      <button onclick="showCategories()">Show Categories</button> <!-- New Button -->
-    </div>
-
-    <!-- Add Category Section -->
-    <div class="section" id="addCategorySection">
-      <h3>Add Category</h3>
-      <input type="text" id="newCategoryName" placeholder="Enter Category Name">
-      <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
-      <button onclick="addCategory()">Add Category</button>
-    </div>
   </div>
 
-  <!-- Attendance Popup for marking status -->
+  <!-- Attendance Popup -->
   <div id="attendancePopup" class="popup">
     <button onclick="setAttendance('P')"><span class="attendance-P">P</span> - Present</button>
     <button onclick="setAttendance('A')"><span class="attendance-A">A</span> - Absent</button>
     <button onclick="setAttendance('H')"><span class="attendance-H">H</span> - Half</button>
-  </div>
-
-  <!-- Category List Popup -->
-  <div id="categoryListPopup" class="popup">
-    <h3>Available Categories</h3>
-    <ul id="categoryList"></ul>
-    <button onclick="closeCategoryPopup()">Close</button>
   </div>
 
   <script src="script.js"></script>
