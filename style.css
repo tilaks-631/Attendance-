@@ -1,33 +1,48 @@
+/* Global Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 body {
   font-family: 'Segoe UI', sans-serif;
-  background: #e0eafc;
+  background: linear-gradient(135deg, #f8f9fa, #e0eafc);
   color: #333;
+  padding-bottom: 40px;
 }
 header {
   background: #4e54c8;
-  color: #fff;
+  color: white;
+  padding: 15px;
   text-align: center;
-  padding: 20px;
 }
 button {
   margin: 5px;
   padding: 10px 15px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
 }
 button:hover {
   opacity: 0.8;
 }
 .container {
+  width: 90%;
   max-width: 1200px;
-  margin: auto;
-  background: #fff;
+  margin: 20px auto;
+  background: white;
   padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+.top-sections {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 .section {
-  margin-bottom: 20px;
+  width: 48%;
 }
 table {
   width: 100%;
@@ -38,17 +53,12 @@ th, td {
   border: 1px solid #ddd;
   text-align: center;
 }
-th {
-  background: #f2f2f2;
-}
-.attendance-cell {
-  cursor: pointer;
-  background: #f9f9f9;
-}
 .popup {
   display: none;
   position: absolute;
   background: white;
   padding: 10px;
   border: 1px solid #ddd;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
 }
