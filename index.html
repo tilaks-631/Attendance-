@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <!-- Header Section -->
   <header>
     <h1>Workers Attendance Web App</h1>
@@ -65,6 +66,7 @@
         <!-- Options populated dynamically -->
       </select>
       <button onclick="addWorker()">Add Worker</button>
+      <button onclick="showCategories()">Show Categories</button> <!-- New Button -->
     </div>
 
     <!-- Add Category Section -->
@@ -81,6 +83,13 @@
     <button onclick="setAttendance('P')"><span class="attendance-P">P</span> - Present</button>
     <button onclick="setAttendance('A')"><span class="attendance-A">A</span> - Absent</button>
     <button onclick="setAttendance('H')"><span class="attendance-H">H</span> - Half</button>
+  </div>
+
+  <!-- Category List Popup -->
+  <div id="categoryListPopup" class="popup">
+    <h3>Available Categories</h3>
+    <ul id="categoryList"></ul>
+    <button onclick="closeCategoryPopup()">Close</button>
   </div>
 
   <script src="script.js"></script>
