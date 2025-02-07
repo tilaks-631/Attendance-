@@ -7,45 +7,53 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- HEADER -->
+    <header>
+        <h1>Workers Attendance</h1>
+        <p id="currentDate"></p>
+        <div class="btn-group">
+            <button class="category" onclick="addCategory()">Add Category</button>
+            <button class="newWeek" onclick="newWeek()">New Week</button>
+            <button class="reset" onclick="resetData()">Reset</button>
+            <button class="undo" onclick="undoAction()">Undo</button>
+            <button class="pdf" onclick="exportPDF()">Download PDF</button>
+        </div>
+    </header>
+
+    <!-- CONTAINER -->
     <div class="container">
-        <h1>Workers Attendance Tracker</h1>
-        <div class="top-bar">
-            <button onclick="addWorker()">➕ Add Worker</button>
-            <button onclick="addCategory()">➕ Add Category</button>
-            <button onclick="resetAttendance()">🔄 Reset</button>
-            <button onclick="undoAction()">↩️ Undo</button>
-        </div>
-        <div id="date-time"></div>
-        
-        <div class="table-container">
-            <table id="attendanceTable">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Worker Name</th>
-                        <th>Category</th>
-                        <th>Mon</th>
-                        <th>Tue</th>
-                        <th>Wed</th>
-                        <th>Thu</th>
-                        <th>Fri</th>
-                        <th>Sat</th>
-                        <th>Total Payment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Dynamic Rows Added Here -->
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="bottom-bar">
-            <button onclick="prevWeek()">⬅️ Previous Week</button>
-            <button onclick="nextWeek()">Next Week ➡️</button>
-            <button onclick="exportPDF()">📄 Export as PDF</button>
+        <div class="section">
+            <h3>Workers List</h3>
+            <button onclick="addWorker()">+ Add Worker</button>
         </div>
 
-        <h2>Overall Total Payment: <span id="totalPayment">0</span> ₹</h2>
+        <!-- CATEGORY FILTERS -->
+        <div id="categoryFilters">
+            <button onclick="filterCategory('All')">All</button>
+        </div>
+
+        <!-- ATTENDANCE TABLE -->
+        <table id="attendanceTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Worker Name</th>
+                    <th>Category</th>
+                    <th>Monday</th>
+                    <th>Tuesday</th>
+                    <th>Wednesday</th>
+                    <th>Thursday</th>
+                    <th>Friday</th>
+                    <th>Saturday</th>
+                    <th>Total Payment</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- GRAND TOTAL -->
+        <div id="grandTotal">Total Payment: ₹0</div>
     </div>
 
     <script src="script.js"></script>
