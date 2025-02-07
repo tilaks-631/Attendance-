@@ -1,64 +1,57 @@
-/* Global Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #f8f9fa, #e0eafc);
-  color: #333;
-  padding-bottom: 40px;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #f8f9fa, #e0eafc);
+    color: #333;
 }
 header {
-  background: #4e54c8;
-  color: white;
-  padding: 15px;
-  text-align: center;
+    background: #4e54c8;
+    color: white;
+    padding: 15px;
+    text-align: center;
 }
 button {
-  margin: 5px;
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
 }
 button:hover {
-  opacity: 0.8;
+    opacity: 0.9;
 }
 .container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 20px auto;
-  background: white;
-  padding: 20px;
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-  border-radius: 8px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
 }
-.top-sections {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-.section {
-  width: 48%;
+h3 {
+    color: #4e54c8;
 }
 table {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
 th, td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: center;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
 }
+th {
+    background-color: #f2f2f2;
+}
+.attendance-P { background: #28a745; color: white; }
+.attendance-A { background: #ff4d4d; color: white; }
+.attendance-H { background: #ffea00; color: black; }
 .popup {
-  display: none;
-  position: absolute;
-  background: white;
-  padding: 10px;
-  border: 1px solid #ddd;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    z-index: 1000;
 }
