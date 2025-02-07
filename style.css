@@ -1,4 +1,4 @@
-/* Reset & Global Styles */
+/* Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -16,67 +16,60 @@ header {
   color: #fff;
   padding: 20px;
   text-align: center;
-}
-header h1 {
-  font-size: 2em;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 button {
-  margin: 5px;
   padding: 10px 15px;
+  border: none;
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
+  transition: transform 0.2s;
 }
 button:hover {
   transform: translateY(-2px);
 }
+button.reset { background-color: #ff4d4d; color: #fff; }
+button.undo { background-color: #ffa500; color: #fff; }
+button.pdf { background-color: #28a745; color: #fff; }
+button.newWeek { background-color: #6f42c1; color: #fff; }
+button.showCategories { background-color: #17a2b8; color: #fff; }
 
-/* Container & Sections */
 .container {
-  width: 95%;
+  width: 90%;
   max-width: 1200px;
   margin: 20px auto;
   background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
   padding: 20px;
 }
-.section {
+
+.section-container {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
-h3 {
-  color: #4e54c8;
+
+.section {
+  flex: 1;
+  margin: 10px;
+  padding: 15px;
+  background: #eef2ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
-/* Table Styles */
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 20px;
 }
 th, td {
   padding: 10px;
   text-align: center;
   border: 1px solid #ddd;
 }
-
-/* Category List Popup */
-#categoryListPopup {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  z-index: 1000;
-  text-align: center;
-}
-#categoryList {
-  list-style-type: none;
-}
-#categoryList li {
-  padding: 8px;
-  background: #f2f2f2;
-  margin: 5px 0;
-  border-radius: 5px;
+th {
+  background-color: #f2f2f2;
 }
