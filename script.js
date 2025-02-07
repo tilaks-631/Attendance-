@@ -1,86 +1,96 @@
+document.addEventListener("DOMContentLoaded", () => {
+    loadData();
+    updateDate();
+});
+
+const categories = {};
 let workers = [];
-let categories = {};
-let totalPayment = 0;
 
-function addWorker() {
-    let name = prompt("Enter Worker Name:");
-    if (!name) return;
-    
-    let category = prompt("Enter Category:");
-    if (!category || !categories[category]) {
-        alert("Category does not exist!");
-        return;
-    }
-
-    let wage = categories[category];
-    workers.push({ name, category, wage, attendance: [null, null, null, null, null, null], total: 0 });
-    renderTable();
+function updateDate() {
+    document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
 }
 
 function addCategory() {
-    let category = prompt("Enter Category Name:");
-    if (!category) return;
-    
-    let wage = parseInt(prompt("Enter Daily Wage:"));
-    if (isNaN(wage) || wage <= 0) {
-        alert("Invalid Wage!");
-        return;
+    const name = prompt("Enter Category Name:");
+    const wage = prompt("Enter Daily Wage:");
+
+    if (name && wage) {
+        categories[name] = parseFloat(wage);
+        document.getElementById("categoryFilters").innerHTML += 
+            `<button onclick="filterCategory('${name}')">${name}</button>`;
     }
-
-    categories[category] = wage;
-    alert(`Category "${category}" added successfully!`);
 }
 
-function markAttendance(workerIndex, dayIndex) {
-    let status = prompt("Mark Attendance (P=Present, A=Absent, H=Half):");
-    if (!['P', 'A', 'H'].includes(status.toUpperCase())) return;
+function addWorker() {
+    const name = prompt("Enter Worker Name:");
+    const category = prompt("Enter Worker Category:");
 
-    workers[workerIndex].attendance[dayIndex] = status.toUpperCase();
-    calculatePayment();
-    renderTable();
-}
-
-function calculatePayment() {
-    totalPayment = 0;
-    workers.forEach(worker => {
-        let total = 0;
-        worker.attendance.forEach(day => {
-            if (day === 'P') total += worker.wage;
-            else if (day === 'H') total += worker.wage / 2;
-        });
-        worker.total = total;
-        totalPayment += total;
-    });
-    document.getElementById("totalPayment").innerText = totalPayment + " ₹";
-}
-
-function resetAttendance() {
-    if (!confirm("Are you sure to reset attendance?")) return;
-    workers.forEach(worker => worker.attendance.fill(null));
-    calculatePayment();
-    renderTable();
+    if (name && categories[category]) {
+        workers.push({ name, category, attendance: Array(6).fill("") });
+        renderTable();
+    } else {
+        alert("Invalid Category! Add category first.");
+    }
 }
 
 function renderTable() {
-    let tbody = document.querySelector("#attendanceTable tbody");
+    const tbody = document.querySelector("#attendanceTable tbody");
     tbody.innerHTML = "";
 
-    workers.forEach((worker, i) => {
+    workers.forEach((worker, index) => {
+        let totalPay = 0;
         let row = `<tr>
-            <td>${i + 1}</td>
+            <td>${index + 1}</td>
             <td>${worker.name}</td>
             <td>${worker.category}</td>`;
 
-        worker.attendance.forEach((day, j) => {
-            let colorClass = day === 'P' ? 'present' : day === 'A' ? 'absent' : day === 'H' ? 'half' : '';
-            row += `<td class="${colorClass}" onclick="markAttendance(${i}, ${j})">${day || '-'}</td>`;
+        worker.attendance.forEach((status, day) => {
+            let className = status ? `attendance-${status}` : "";
+            let pay = status === "P" ? categories[worker.category] :
+                      status === "H" ? categories[worker.category] / 2 : 0;
+
+            totalPay += pay;
+
+            row += `<td class="attendance-cell ${className}" 
+                        onclick="toggleAttendance(${index}, ${day})">
+                        ${status}
+                    </td>`;
         });
 
-        row += `<td>${worker.total} ₹</td></tr>`;
+        row += `<td>₹${totalPay.toFixed(2)}</td></tr>`;
         tbody.innerHTML += row;
     });
+
+    document.getElementById("grandTotal").innerText = 
+        `Total Payment: ₹${workers.reduce((sum, w) => sum + w.attendance.reduce((s, a, d) => s + (a === "P" ? categories[w.category] : a === "H" ? categories[w.category] / 2 : 0), 0), 0).toFixed(2)}`;
 }
 
-setInterval(() => {
-    document.getElementById("date-time").innerText = new Date().toLocaleString();
-}, 1000);
+function toggleAttendance(workerIndex, dayIndex) {
+    let currentStatus = workers[workerIndex].attendance[dayIndex];
+    let nextStatus = currentStatus === "" ? "P" : currentStatus === "P" ? "A" : currentStatus === "A" ? "H" : "";
+
+    workers[workerIndex].attendance[dayIndex] = nextStatus;
+    renderTable();
+}
+
+function newWeek() {
+    workers.forEach(worker => worker.attendance.fill(""));
+    renderTable();
+}
+
+function resetData() {
+    workers = [];
+    renderTable();
+}
+
+function filterCategory(category) {
+    console.log("Filter by:", category);
+}
+
+function exportPDF() {
+    alert("PDF Export coming soon!");
+}
+
+function loadData() {
+    renderTable();
+}
