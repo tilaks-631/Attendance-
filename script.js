@@ -5,22 +5,20 @@ let selectedCell = null;
 // Add Category
 function addCategory() {
   let name = document.getElementById("newCategoryName").value.trim();
-  let wage = document.getElementById("newCategoryWage").value.trim();
+  let wage = Number(document.getElementById("newCategoryWage").value);
   
   if (name && wage) {
-    categories[name] = Number(wage);
+    categories[name] = wage;
     updateCategoryDropdown();
-    document.getElementById("newCategoryName").value = "";
-    document.getElementById("newCategoryWage").value = "";
   }
 }
 
 // Show Categories
 function showCategories() {
-  alert("Categories: " + Object.keys(categories).join(", "));
+  alert("Available Categories: " + Object.keys(categories).join(", "));
 }
 
-// Update Dropdown
+// Update Category Dropdown
 function updateCategoryDropdown() {
   let select = document.getElementById("workerCategorySelect");
   select.innerHTML = "";
@@ -40,7 +38,6 @@ function addWorker() {
   if (name && category) {
     workers.push({ name, category, attendance: {}, totalPayment: 0 });
     renderTable();
-    document.getElementById("newWorkerName").value = "";
   }
 }
 
@@ -48,7 +45,7 @@ function addWorker() {
 function renderTable() {
   let tbody = document.getElementById("attendanceBody");
   tbody.innerHTML = "";
-  
+
   workers.forEach((worker, index) => {
     let row = document.createElement("tr");
     row.innerHTML = `
@@ -56,39 +53,40 @@ function renderTable() {
       <td>${worker.name}</td>
       <td>${worker.category}</td>
       ${["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].map(day => 
-        `<td class="attendance-cell" onclick="openAttendancePopup(this, '${worker.name}', '${day}')">
+        `<td class="attendance-cell" onclick="openAttendancePopup(event, '${worker.name}', '${day}', this)">
           ${worker.attendance[day] || ""}
         </td>`
       ).join("")}
-      <td>${worker.totalPayment}</td>
+      <td id="total-${worker.name}">${worker.totalPayment}</td>
     `;
     tbody.appendChild(row);
   });
+
+  updateGrandTotal();
 }
 
-// Open Attendance Popup
-function openAttendancePopup(cell, workerName, day) {
+// Attendance Marking
+function openAttendancePopup(event, workerName, day, cell) {
   selectedCell = { cell, workerName, day };
+
   let popup = document.getElementById("attendancePopup");
   popup.style.display = "block";
+  popup.style.left = event.pageX + "px";
+  popup.style.top = event.pageY + "px";
 }
 
-// Set Attendance
 function setAttendance(status) {
   let { cell, workerName, day } = selectedCell;
   let worker = workers.find(w => w.name === workerName);
   
-  if (worker) {
-    worker.attendance[day] = status;
-    cell.innerHTML = status;
-    worker.totalPayment = calculatePayment(worker);
-    renderTable();
-  }
-  document.getElementById("attendancePopup").style.display = "none";
+  worker.attendance[day] = status;
+  cell.innerText = status;
+  worker.totalPayment = calculatePayment(worker);
+  updateGrandTotal();
 }
 
-// Calculate Payment
-function calculatePayment(worker) {
-  return Object.values(worker.attendance).reduce((sum, status) => 
-    sum + (status === "P" ? categories[worker.category] : status === "H" ? categories[worker.category] / 2 : 0), 0);
+// Grand Total Calculation
+function updateGrandTotal() {
+  let grandTotal = workers.reduce((sum, worker) => sum + worker.totalPayment, 0);
+  document.getElementById("grandTotal").innerText = `Grand Total: ${grandTotal}`;
 }
