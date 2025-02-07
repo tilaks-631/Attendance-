@@ -1,52 +1,74 @@
+/* Reset & Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-    color: white;
-    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fa, #e0eafc);
+    color: #333;
+    min-height: 100vh;
+    padding-bottom: 40px;
 }
-
-.container {
-    max-width: 900px;
-    margin: auto;
+header {
+    background: #4e54c8;
+    color: #fff;
     padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    position: relative;
 }
-
 button {
-    background-color: #008CBA;
-    color: white;
-    padding: 10px 15px;
     margin: 5px;
+    padding: 10px 15px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s;
 }
-
 button:hover {
-    background-color: #005f73;
+    transform: translateY(-2px);
 }
+button.reset { background-color: #ff4d4d; color: #fff; }
+button.undo { background-color: #ffa500; color: #fff; }
+button.pdf { background-color: #28a745; color: #fff; }
+button.category { background-color: #007bff; color: #fff; }
+button.newWeek { background-color: #6f42c1; color: #fff; }
 
-.table-container {
-    overflow-x: auto;
-}
-
+/* Table Styles */
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
-    background: white;
-    color: black;
+    margin-bottom: 10px;
 }
-
 th, td {
     padding: 10px;
-    border: 1px solid black;
     text-align: center;
+    border: 1px solid #ddd;
 }
-
 th {
-    background: #ff5e62;
-    color: white;
+    background-color: #f2f2f2;
+}
+tbody tr:hover {
+    background: #f9f9f9;
 }
 
-.present { background-color: green; color: white; }
-.absent { background-color: red; color: white; }
-.half { background-color: yellow; }
+/* Attendance Cell Styles */
+.attendance-cell {
+    cursor: pointer;
+    min-width: 70px;
+    height: 40px;
+}
+.attendance-P { background-color: #28a745; color: #fff; }
+.attendance-A { background-color: #ff4d4d; color: #fff; }
+.attendance-H { background-color: #ffea00; color: #333; }
+
+/* Grand Total */
+#grandTotal {
+    text-align: right;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
