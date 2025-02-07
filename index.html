@@ -23,8 +23,8 @@
         <div>
             <input type="text" id="searchBox" placeholder="Search Worker..." oninput="searchWorker()">
         </div>
-        <div id="categoryFilters" class="btn-group">
-            <!-- Dynamic category filters -->
+        <div class="btn-group">
+            <button onclick="toggleCategories()">Show Categories</button>
         </div>
     </header>
 
@@ -33,26 +33,6 @@
         <div id="currentDate"></div>
         <div id="weekNavigation">
             <span id="weekDisplay">Week: Current</span>
-        </div>
-
-        <!-- Category & Worker Management -->
-        <div class="row">
-            <div class="section" id="addCategorySection">
-                <h3>Add Category</h3>
-                <input type="text" id="newCategoryName" placeholder="Enter Category Name">
-                <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
-                <button onclick="addCategory()">Add Category</button>
-                <button onclick="showCategories()">Show Categories</button>
-            </div>
-
-            <div class="section" id="addWorkerSection">
-                <h3>Add Worker</h3>
-                <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
-                <select id="workerCategorySelect">
-                    <!-- Categories will be dynamically added -->
-                </select>
-                <button onclick="addWorker()">Add Worker</button>
-            </div>
         </div>
 
         <!-- Attendance Table -->
@@ -72,10 +52,28 @@
                 </tr>
             </thead>
             <tbody id="attendanceBody">
-                <!-- Dynamic Rows -->
+                <!-- Dynamic Rows will be inserted here -->
             </tbody>
         </table>
         <div id="grandTotal">Grand Total: 0</div>
+
+        <!-- Add Worker Section -->
+        <div class="section" id="addWorkerSection">
+            <h3>Add Worker</h3>
+            <input type="text" id="newWorkerName" placeholder="Enter Worker Name">
+            <select id="workerCategorySelect">
+                <!-- Options populated dynamically -->
+            </select>
+            <button onclick="addWorker()">Add Worker</button>
+        </div>
+
+        <!-- Add Category Section -->
+        <div class="section" id="addCategorySection">
+            <h3>Add Category</h3>
+            <input type="text" id="newCategoryName" placeholder="Enter Category Name">
+            <input type="number" id="newCategoryWage" placeholder="Enter Daily Wage">
+            <button onclick="addCategory()">Add Category</button>
+        </div>
     </div>
 
     <!-- Attendance Popup -->
