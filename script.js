@@ -1,38 +1,52 @@
+let workers = [];
 let categories = [];
 
 function addCategory() {
-    let categoryName = document.getElementById("newCategoryName").value.trim();
-    let dailyWage = document.getElementById("newCategoryWage").value;
-
-    if (categoryName && dailyWage) {
-        categories.push({ name: categoryName, wage: parseInt(dailyWage) });
-        updateCategoryDropdown();
-        document.getElementById("newCategoryName").value = "";
-        document.getElementById("newCategoryWage").value = "";
-    }
-}
-
-function updateCategoryDropdown() {
-    let select = document.getElementById("workerCategorySelect");
-    select.innerHTML = "";
-    categories.forEach(cat => {
-        let option = document.createElement("option");
-        option.value = cat.name;
-        option.textContent = cat.name;
-        select.appendChild(option);
-    });
+  const name = document.getElementById("newCategoryName").value;
+  const wage = document.getElementById("newCategoryWage").value;
+  if (name && wage) {
+    categories.push({ name, wage });
+    updateCategoryDropdown();
+  }
 }
 
 function showCategories() {
-    alert("Available Categories:\n" + categories.map(cat => cat.name).join(", "));
+  const categoryList = document.getElementById("categoryList");
+  categoryList.innerHTML = categories.map(c => `<li>${c.name} - ${c.wage}</li>`).join('');
+}
+
+function updateCategoryDropdown() {
+  const dropdown = document.getElementById("workerCategorySelect");
+  dropdown.innerHTML = categories.map(c => `<option value="${c.name}">${c.name}</option>`).join('');
 }
 
 function addWorker() {
-    let workerName = document.getElementById("newWorkerName").value.trim();
-    let category = document.getElementById("workerCategorySelect").value;
-
-    if (workerName && category) {
-        console.log(`Worker Added: ${workerName} - ${category}`);
-        document.getElementById("newWorkerName").value = "";
-    }
+  const name = document.getElementById("newWorkerName").value;
+  const category = document.getElementById("workerCategorySelect").value;
+  if (name && category) {
+    workers.push({ name, category });
+    renderTable();
+  }
 }
+
+function renderTable() {
+  const tbody = document.getElementById("attendanceBody");
+  tbody.innerHTML = workers.map((w, i) => `
+    <tr>
+      <td>${i + 1}</td>
+      <td>${w.name}</td>
+      <td>${w.category}</td>
+      <td></td><td></td><td></td><td></td><td></td><td></td>
+      <td>0</td>
+    </tr>`).join('');
+}
+
+function resetAttendance() {
+  workers = [];
+  renderTable();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateCategoryDropdown();
+  renderTable();
+});
